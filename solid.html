@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">  
+    <link rel="stylesheet" href="css/Color.css">
+    <link rel="stylesheet" href="css/all.css">
+    
+   
+    
+    <title>COLOR PICKER</title>
+</head>
+<body onload="addcolor()"> 
+    <nav>
+        <a href="gradient.html" class="logo">OWN COLOR PICKER</a>
+        <ul>
+            <li class="active"><a href="solid.html">SOLID COLOR</a></li>
+            <li ><a href="gradient.html">GRADIENT COLOR </a></li>
+        </ul>
+    </nav>
+    <div class="name">
+        <span id="type">
+
+        </span>
+    </div>
+    
+    
+        <button class="generate" onclick="addcolor()">Generate Color Blocks</button>
+    <div class="solidcolor">
+        
+    </div>
+    <div class="footer">
+        &copy; All rights reserved
+    </div>
+
+</body>
+<script src="js/typed.js"></script>
+<script src="js/Color.js"></script>
+<script>
+    var main=document.querySelector('.solidcolor')
+    
+
+    function createblock(){
+        var box=document.createElement('div')
+        box.classList.add('box')
+        var textarea=document.createElement('textarea')
+        textarea.classList.add('copyarea')
+        var copybtn=document.createElement('button')
+        copybtn.classList.add('btncopy')
+        copybtn.setAttribute('id','copybtn');
+        textarea.readOnly=true;
+        
+        copybtn.appendChild(textarea)
+
+        function randomcolorhex(){
+            var letter="1234567890abcdef";
+            var hex="#";
+            for(var i=0;i<6;i++){
+              var rndm=letter[Math.floor(Math.random()*letter.length)]
+              hex+=rndm;
+            }
+            return hex;
+  
+        }
+        var newcolor=randomcolorhex()
+        textarea.innerHTML=newcolor
+
+
+        return copybtn
+    }
+
+
+    function generate(){
+        main.innerHTML="";
+        for(var i=0;i<30;i++)
+        {
+            box=createblock();
+            main.appendChild(box);
+        }
+    }
+    function addcolor(){
+        generate();
+        var randcolorbox=document.querySelectorAll('.copyarea');
+
+        var i=1;
+        randcolorbox.forEach(e=>{
+
+            e.setAttribute('id',`teatarea${i}`);
+            e.parentElement.setAttribute('id',`copybtn${i}`);
+            newcolor=e.innerHTML;
+            e.parentElement.style.backgroundColor=newcolor;
+            i++;
+        })
+    }
+
+
+
+
+
+    
+    
+    
+
+
+</script>
+</html>

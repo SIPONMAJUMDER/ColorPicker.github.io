@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">  
+    <link rel="stylesheet" href="css/Color.css">
+    <link rel="stylesheet" href="css/all.css">
+    
+   <style>
+       .text{
+           padding: 50px;
+           width: 60%;
+           margin: auto;
+       }
+   </style>
+    
+    <title>COLOR PICKER</title>
+</head>
+<body>
+    
+    <nav>
+        <a href="gradient.html" class="logo">OWN COLOR PICKER</a>
+        <ul>
+            <li class="active"><a href="gradient.html">GRADIENT COLOR</a></li>
+            <li><a href="solid.html">SOLID COLOR</a></li>
+        </ul>
+    </nav>
+    <div class="name">
+        <span id="type">
+
+        </span>
+    </div>
+
+    <div class="options">
+        <div class="code">
+            <textarea id="copyarea" class="hexcode"></textarea>
+            <button id="copybtn"><i class="far fa-copy" ></i></button>
+        </div>
+        <button class="btn-generate">Change Gradient</button>
+    </div>
+    
+      
+    
+
+    <div class="footer">
+        &copy; All rights reserved
+    </div>
+
+</body>
+<script src="js/typed.js"></script>
+<script src="js/Color.js"></script>
+<script>
+    generatebtn=document.querySelector(".btn-generate")
+  hexcode=document.querySelector(".hexcode")
+
+  generatebtn.addEventListener("click",colorgeneretor)
+  var str;
+  function colorgeneretor()
+  {
+    var letter='1234567890abcdef';
+    var hex1='#'
+    var hex2='#'
+    for(var i=0;i<6;i++){
+        hex1+=letter[Math.floor(Math.random()*letter.length)]
+        hex2+=letter[Math.floor(Math.random()*letter.length)]    
+    }
+
+    hexcode.value=`background : linear-gradient(to right, ${hex1}, ${hex2});`
+    document.documentElement.style.background=`linear-gradient(to right, ${hex1}, ${hex2})`
+    str=`background : linear-gradient(to right, ${hex1}, ${hex2});`
+  }
+  window.onload=colorgeneretor()
+
+  document.getElementById('copybtn').addEventListener('click',()=>{
+    document.getElementById('copyarea').select();
+    document.execCommand('copy');
+  })
+</script>
+</html>
